@@ -114,7 +114,7 @@ export function Hero() {
             </p>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
               <AppStoreLink />
-              <Button className="hover:bg-green-500" href="/scan">Start scanning</Button>
+              <Button  href="/scan">Start scanning</Button>
               {/* <Button
                 href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                 variant="outline"
@@ -133,9 +133,9 @@ export function Hero() {
             </div>
           </div>
           <div className="relative -mt-4 lg:col-span-7 lg:mt-0 xl:col-span-6">
-            <p className="text-center text-sm font-semibold text-gray-900 lg:text-left">
+            {/* <p className="text-center text-sm font-semibold text-gray-900 lg:text-left">
               As featured in
-            </p>
+            </p> */}
             {/* <ul
               role="list"
               className="mx-auto mt-8 flex max-w-xl flex-wrap justify-center gap-x-10 gap-y-8 lg:mx-0 lg:justify-start"

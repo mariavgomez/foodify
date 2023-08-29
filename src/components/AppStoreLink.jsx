@@ -9,8 +9,8 @@ export function AppStoreLink({ color = 'black' }) {
       className={clsx(
         'rounded-lg transition-colors',
         color === 'black'
-          ? 'bg-gray-800 text-white hover:bg-green-500'
-          : 'bg-white text-gray-900 hover:bg-green-300',
+          ? 'bg-gray-800 text-white hover:bg-green-800'
+          : 'bg-white text-gray-900 hover:bg-green-500',
       )}
     >
       <svg viewBox="0 0 120 40" aria-hidden="true" className="h-10">
