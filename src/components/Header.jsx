@@ -47,9 +47,9 @@ function MobileNavLink(props) {
 
 export function Header() {
   return (
-    <header>
+    <header className='bg-cyan-50'>
       <nav>
-        <Container className="relative z-50 flex justify-between py-8">
+        <Container className="bg-cyan-50 relative z-50 flex justify-between py-8">
           <div className="relative z-10 flex items-center gap-16">
             <Link href="/" aria-label="Home">
               <Logo className="h-10 w-auto" />
