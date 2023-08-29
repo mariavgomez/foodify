@@ -17,6 +17,7 @@ export default function Scan() {
       video: {
         width: { ideal: 4096 },
         height: { ideal: 2160 },
+        facingMode: "environment",
       },
     };
     navigator.mediaDevices
