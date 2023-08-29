@@ -7,8 +7,24 @@ export async function GET(request, { params }) {
 
   try {
     const response = await fetch(apiUrl);
-    const product = await response.json();
+
+    const data = await response.json();
+
+    const product = {
+      name: data.product.product_name,
+      brand: data.product.brands,
+      image: data.product.image_url,
+      ingredients: data.product.ingredients_text,
+      labels: data.product.labels,
+      additives_n: data.product.additives_n,
+      additives_tags: data.product.additives_tags,
+      ingredients_analysis: data.product.ingredients_analysis,
+      nova_group: data.product.nova_group,
+    };
+
+    // const product = await response.json();
     console.log("got product", product);
+
     return NextResponse.json(product);
   } catch (error) {
     console.log("got error calling API", error);
