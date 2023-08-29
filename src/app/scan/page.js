@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 
 export default function Scan() {
@@ -10,19 +11,6 @@ export default function Scan() {
   const streamRef = useRef();
   const barcodeDetectorRef = useRef();
   const [size, setSize] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    try {
-      window["BarcodeDetector"].getSupportedFormats();
-    } catch {
-      window["BarcodeDetector"] =
-        barcodeDetectorPolyfill.BarcodeDetectorPolyfill;
-    }
-
-    barcodeDetectorRef.current = new BarcodeDetector({
-      formats: ["ean_13"],
-    });
-  }, []);
 
   useEffect(() => {
     const localStreamConstraints = {
@@ -101,6 +89,22 @@ export default function Scan() {
           </Link>
         </div>
       </div>
+      <Script src="https://cdn.jsdelivr.net/npm/@undecaf/zbar-wasm@0.9.15/dist/index.js" />
+      <Script
+        src="https://cdn.jsdelivr.net/npm/@undecaf/barcode-detector-polyfill@0.9.20/dist/index.js"
+        onReady={() => {
+          try {
+            window["BarcodeDetector"].getSupportedFormats();
+          } catch {
+            window["BarcodeDetector"] =
+              barcodeDetectorPolyfill.BarcodeDetectorPolyfill;
+          }
+
+          barcodeDetectorRef.current = new BarcodeDetector({
+            formats: ["ean_13"],
+          });
+        }}
+      />
     </>
   );
 }
