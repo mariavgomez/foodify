@@ -3,15 +3,19 @@ import { Header } from "@/components/Header";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
+import Nova1 from "../../../images/nova_1.png";
+import Nova2 from "@/images/nova_2.png";
+import Nova3 from "@/images/nova_3.png";
+import Nova4 from "@/images/nova_4.png";
+
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
 export default function Product() {
   const params = useParams();
 
-  const [loading, setLoading] = useState(true); // Initially set to true
-  const [product, setProduct] = useState(null); // Start with no data
-  // const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [product, setProduct] = useState(null);
 
   useEffect(() => {
     async function fetchProductData() {
@@ -21,13 +25,10 @@ export default function Product() {
           throw new Error("Failed to fetch data from API");
         }
         const data = await response.json();
-        setProduct(data); // Update the product data
-        // setLoading(false); // Set loading to false once data is fetched
+        setProduct(data);
       } catch (error) {
         console.error("Error fetching product data", error);
-        //setError(error);
-        //setLoading(false); // Set loading to false in case of an
-        // Set placeholder data in case of an error
+
         setProduct({
           name: "Placeholder Product",
           brand: "Placeholder Brand",
@@ -43,44 +44,80 @@ export default function Product() {
     fetchProductData();
   }, [params.upc]);
 
+  const getNovaImage = (novaGroup) => {
+    switch (novaGroup) {
+      case 1:
+        return Nova1;
+      case 2:
+        return Nova2;
+      case 3:
+        return Nova3;
+      case 4:
+        return Nova4;
+      default:
+        return Nova1; // Default image if novaGroup value is not 1-4
+    }
+  };
+
   return (
     <>
-      <>
-        <Header />
-        {loading ? (
-          <div className="text-center mt-8">Loading...</div>
-        ) : (
-          <div className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-md">
-            <div className="flex justify-center items-center mb-4">
-              <img
-                className="w-48 h-48 object-contain"
-                src={product.image}
-                alt={product.name}
-              />
-            </div>
-            <div className="text-center">
-              <h2 className="text-2xl font-bold mb-1">{product.name}</h2>
-              <p className="text-gray-600 mb-4">{product.brand}</p>
-              <div className="mb-4">
-                <h3 className="text-lg font-semibold mb-1">Ingredients:</h3>
-                <ul className="list-disc list-inside text-gray-700">
-                  {product.ingredients.split(", ").map((ingredient, index) => (
+      <Header />
+      {loading ? (
+        <div className="text-center mt-8">Loading...</div>
+      ) : (
+        <div className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-md">
+          <div className="flex justify-center items-center mb-4">
+            <img
+              className="w-48 h-50 object-contain flex-none rounded-xl bg-white object-cover ring-1 ring-gray-900/10"
+              src={product.image}
+              alt={product.name}
+            />
+          </div>
+          <div className="text-center">
+            <h2 className="text-2xl font-bold mb-1">{product.name}</h2>
+            <p className="text-gray-600 mb-4">{product.brand}</p>
+            <div className="mb-4">
+              <h3 className="text-lg text-justify font-semibold mb-1">
+                Ingredients:
+              </h3>
+              <ul className="list-none text-justify text-gray-700">
+                {(product.ingredients ?? "No ingredients found")
+                  .split(", ")
+                  .map((ingredient, index) => (
                     <li key={index}>{ingredient}</li>
                   ))}
-                </ul>
-              </div>
+              </ul>
+            </div>
 
-              <p className="text-sm text-gray-500 mb-1">
-                Labels: {product.labels}
-              </p>
-              <p className="text-sm text-gray-500 mb-1">
-                Additives: {product.additives_n} ({product.additives_tags})
-              </p>
+            <p className="text-sm text-gray-500 mb-1">
+              Labels: {product.labels ?? "no label found"}
+            </p>
+            <p className="text-sm text-gray-500 mb-1">
+              Additives: {product.additives_n} ({product.additives_tags})
+            </p>
+
+            <div className="mt-4">
+              <img
+                className="mx-auto"
+                src={getNovaImage(product.nova_group)}
+                alt={`Nova Group ${product.nova_group}`}
+              />
+
+              <img
+                className="mx-auto"
+                src={Nova1}
+                alt={`Nova Group ${product.nova_group}`}
+              />
             </div>
           </div>
-        )}
-      </>
-      {/* {loading ? (
+        </div>
+      )}
+    </>
+  );
+}
+
+{
+  /* {loading ? (
         <div className="text-center mt-8">Loading...</div>
       ) : (
         <>
@@ -146,11 +183,13 @@ export default function Product() {
               </div>
 
               <div className=" gap-x-4 py-3">
-                {product.ingredients.split(", ").map((ingredient, index) => (
-                  <li className="text-gray-500   gap-x-2 py-3" key={index}>
-                    {ingredient}
-                  </li>
-                ))}
+                {(product.ingredients ?? "No ingredients found")
+                  .split(", ")
+                  .map((ingredient, index) => (
+                    <li className="text-gray-500   gap-x-2 py-3" key={index}>
+                      {ingredient}
+                    </li>
+                  ))}
               </div>
             </dl>
 
@@ -171,7 +210,5 @@ export default function Product() {
             </dl>
           </ul>
         </>
-      )} */}
-    </>
-  );
+      )} */
 }
