@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/Button";
+import SlideOver from "@/components/SlideOver";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
@@ -12,6 +13,8 @@ export default function Scan() {
   const streamRef = useRef();
   const barcodeDetectorRef = useRef();
   const [size, setSize] = useState({ width: 0, height: 0 });
+
+  //const [open, setOpen] = useState(true);
 
   useEffect(() => {
     const localStreamConstraints = {
@@ -113,6 +116,8 @@ export default function Scan() {
           });
         }}
       />
+
+      {/* <SlideOver /> */}
     </>
   );
 }

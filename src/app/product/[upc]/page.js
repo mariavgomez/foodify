@@ -2,20 +2,20 @@
 import { Header } from "@/components/Header";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
-
-import Nova1 from "../../../images/nova_1.png";
-import Nova2 from "@/images/nova_2.png";
-import Nova3 from "@/images/nova_3.png";
-import Nova4 from "@/images/nova_4.png";
-
+import Image from "next/image";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
+import NutriScoreModal from "@/components/NutriScoreModal";
+import Nova from "@/components/Nova";
+import SlideOver from "@/components/SlideOver";
 
 export default function Product() {
   const params = useParams();
 
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     async function fetchProductData() {
@@ -47,15 +47,32 @@ export default function Product() {
   const getNovaImage = (novaGroup) => {
     switch (novaGroup) {
       case 1:
-        return Nova1;
+        return "/nova_1.png";
       case 2:
-        return Nova2;
+        return "/nova_2.png";
       case 3:
-        return Nova3;
+        return "/nova_3.png";
       case 4:
-        return Nova4;
+        return "/nova_4.png";
       default:
-        return Nova1; // Default image if novaGroup value is not 1-4
+        return "/nova_unknown.svg";
+    }
+  };
+
+  const getNutriscore = (nutriScore) => {
+    switch (nutriScore) {
+      case "a":
+        return "/nutri_score-A.png";
+      case "b":
+        return "/nutri_score-B.png";
+      case "c":
+        return "/nutri_score-C.png";
+      case "d":
+        return "/nutri_score-D.png";
+      case "e":
+        return "/nutri_score-E.png";
+      default:
+        return "/nutriscore-unknown.svg";
     }
   };
 
@@ -66,9 +83,9 @@ export default function Product() {
         <div className="text-center mt-8">Loading...</div>
       ) : (
         <div className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-md">
-          <div className="flex justify-center items-center mb-4">
+          <div className=" flex justify-center items-center mb-4">
             <img
-              className="w-48 h-50 object-contain flex-none rounded-xl bg-white object-cover ring-1 ring-gray-900/10"
+              className="w-48 h-49 object-contain flex-none rounded-xl bg-white object-cover ring-1 ring-gray-900/10"
               src={product.image}
               alt={product.name}
             />
@@ -76,8 +93,36 @@ export default function Product() {
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-1">{product.name}</h2>
             <p className="text-gray-600 mb-4">{product.brand}</p>
+            <div className="flex justify-around ">
+              <div className="mt-4">
+                <Image
+                  src={getNovaImage(product.nova_group)}
+                  alt={`Nova Group ${product.nova_group}`}
+                  width={50}
+                  height={50}
+                  className="mx-auto"
+                  onClick={() => setIsModalOpen(true)}
+                />
+              </div>
+              {isModalOpen && <Nova onClose={() => setIsModalOpen(false)} />}
+              <div className="mt-10 ">
+                <Image
+                  src={getNutriscore(product.nutriscore_grade)}
+                  alt={`Nova Group ${product.nutriscore_grade}`}
+                  width={70}
+                  height={60}
+                  className="mx-auto"
+                  onClick={() => setIsModalOpen(true)}
+                />
+              </div>
+
+              {isModalOpen && (
+                <NutriScoreModal onClose={() => setIsModalOpen(false)} />
+              )}
+            </div>
+
             <div className="mb-4">
-              <h3 className="text-lg text-justify font-semibold mb-1">
+              <h3 className="text-lg text-justify font-semibold mt-5 mb-1">
                 Ingredients:
               </h3>
               <ul className="list-none text-justify text-gray-700">
@@ -88,27 +133,9 @@ export default function Product() {
                   ))}
               </ul>
             </div>
-
             <p className="text-sm text-gray-500 mb-1">
               Labels: {product.labels ?? "no label found"}
             </p>
-            <p className="text-sm text-gray-500 mb-1">
-              Additives: {product.additives_n} ({product.additives_tags})
-            </p>
-
-            <div className="mt-4">
-              <img
-                className="mx-auto"
-                src={getNovaImage(product.nova_group)}
-                alt={`Nova Group ${product.nova_group}`}
-              />
-
-              <img
-                className="mx-auto"
-                src={Nova1}
-                alt={`Nova Group ${product.nova_group}`}
-              />
-            </div>
           </div>
         </div>
       )}

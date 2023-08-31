@@ -10,7 +10,7 @@ export async function GET(request, { params }) {
 
     const data = await response.json();
 
-    console.log(data);
+    // console.log(data);
 
     const product = {
       name: data.product.product_name,
