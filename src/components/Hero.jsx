@@ -105,23 +105,15 @@ export function Hero() {
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
           <div className="relative z-10 mx-auto max-w-2xl lg:col-span-7 lg:max-w-none lg:pt-6 xl:col-span-6">
             <h1 className="text-4xl font-medium tracking-tight text-gray-900">
-              Invest at the perfect time.
+              It's time to do healthy choices.
             </h1>
             <p className="mt-6 text-lg text-gray-600">
-              By leveraging insights from our network of industry insiders,
-              you’ll know exactly when to buy to maximize profit, and exactly
-              when to sell to avoid painful losses.
+            With Foodify you can scan your barcode product and discover if it is a good or bad healthy option.
             </p>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
               <AppStoreLink />
               <Button  href="/scan">Start scanning</Button>
-              {/* <Button
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                variant="outline"
-              >
-                <PlayIcon className="h-6 w-6 flex-none" />
-                <span className="ml-2.5">Watch the video</span>
-              </Button> */}
+             
             </div>
           </div>
           <div className="relative mt-10 sm:mt-20 lg:col-span-5 lg:row-span-2 lg:mt-0 xl:col-span-6">

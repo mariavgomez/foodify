@@ -16,6 +16,7 @@ export default function Product() {
   const [product, setProduct] = useState(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [novaOpen, setNovaOpen] = useState(false);
 
   useEffect(() => {
     async function fetchProductData() {
@@ -78,58 +79,67 @@ export default function Product() {
 
   return (
     <>
-      <Header />
+      <Header  />
       {loading ? (
         <div className="text-center mt-8">Loading...</div>
       ) : (
-        <div className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-md">
-          <div className=" flex justify-center items-center mb-4">
-            <img
-              className="w-48 h-49 object-contain flex-none rounded-xl bg-white object-cover ring-1 ring-gray-900/10"
-              src={product.image}
-              alt={product.name}
-            />
-          </div>
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-1">{product.name}</h2>
-            <p className="text-gray-600 mb-4">{product.brand}</p>
-            <div className="flex justify-around ">
-              <div className="mt-4">
-                <Image
-                  src={getNovaImage(product.nova_group)}
-                  alt={`Nova Group ${product.nova_group}`}
-                  width={50}
-                  height={50}
-                  className="mx-auto"
-                  onClick={() => setIsModalOpen(true)}
-                />
-              </div>
-              {isModalOpen && <Nova onClose={() => setIsModalOpen(false)} />}
-              <div className="mt-10 ">
-                <Image
-                  src={getNutriscore(product.nutriscore_grade)}
-                  alt={`Nova Group ${product.nutriscore_grade}`}
-                  width={70}
-                  height={60}
-                  className="mx-auto"
-                  onClick={() => setIsModalOpen(true)}
-                />
-              </div>
-
-              {isModalOpen && (
-                <NutriScoreModal onClose={() => setIsModalOpen(false)} />
-              )}
+        <div className=" overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5  p-8 md:flex md:justify-around xl:justify-evenly">
+          <div>
+            <div className=" flex justify-center items-center mb-4 ">
+              <img
+                className="w-48 h-49 object-contain flex-none rounded-xl bg-white object-cover ring-1 ring-gray-900/10 shadow-lg shadow-stone-500/50"
+                src={product.image}
+                alt={product.name}
+              />
             </div>
+            <div className="text-center">
+              <h2 className="text-2xl font-bold mb-1">{product.name}</h2>
+              <p className="text-gray-600 mb-4">{product.brand}</p>
+              <div className="flex justify-around ">
+                <div className="mt-4  ">
+                  <Image
+                    src={getNovaImage(product.nova_group)}
+                    alt={`Nova Group ${product.nova_group}`}
+                    width={50}
+                    height={50}
+                    className="mx-auto"
+                    onClick={() => setNovaOpen(true)}
+                  />
+                </div>
+                {novaOpen && <Nova onClose={() => setNovaOpen(false)} />}
 
+                <div className="mt-6   ">
+                  <Image
+                    src={getNutriscore(product.nutriscore_grade)}
+                    alt={`Nova Group ${product.nutriscore_grade}`}
+                    width={130}
+                    height={130}
+                    className="mx-auto"
+                    onClick={() => setIsModalOpen(true)}
+                  />
+                </div>
+
+                {isModalOpen && (
+                  <NutriScoreModal onClose={() => setIsModalOpen(false)} />
+                )}
+              </div>
+            </div>
+          </div>
+          <div>
             <div className="mb-4">
               <h3 className="text-lg text-justify font-semibold mt-5 mb-1">
                 Ingredients:
               </h3>
-              <ul className="list-none text-justify text-gray-700">
+              <ul className="list-none text-justify text-gray-700 divide-y divide-gray-100">
                 {(product.ingredients ?? "No ingredients found")
                   .split(", ")
                   .map((ingredient, index) => (
-                    <li key={index}>{ingredient}</li>
+                    <li
+                      className="flex justify-between gap-x-6 py-3 capitalize"
+                      key={index}
+                    >
+                      {ingredient}
+                    </li>
                   ))}
               </ul>
             </div>
