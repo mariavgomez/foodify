@@ -3,12 +3,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import Image from "next/image";
 import Link from 'next/link';
 
-export default function Nova({ onClose }) {
-  const [open, setOpen] = useState(true)
+export default function Nova({ onClose, novaGroup  }) {
+  const [open, setOpen] = useState(true);
+  const [novaOpen, setNovaOpen] = useState(false);
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-40" onClose={() => setNovaOpen(false)}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -69,15 +70,15 @@ export default function Nova({ onClose }) {
                       Nova Group
                     </Dialog.Title>
                     <div className="mt-2">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500 text-left pb-2">
                       The NOVA classification assigns a group to food products based on how much processing they have been through 
                       </p>
                       <ul className='list-none text-sm text-gray-500 text-left'>
-                        <li className='mb-2'> <span className='text-white bg-green-600 p-1 rounded-md'>Group 1</span> - Unprocessed or minimally processed foods</li>
-                        <li className='mb-2'><span className='text-white bg-yellow-400 p-1 rounded-md'>Group 2</span> - Processed culinary ingredients</li>
-                        <li className='mb-2'><span className='text-white bg-orange-500 p-1 rounded-md'>Group 3</span> - Processed foods</li>
-                        <li className='mb-2'><span className='text-white bg-red-600 p-1 rounded-md'>Group 4</span> - Ultra-processed food and drink products</li>
-                        <li className='mb-2'><span className='text-white bg-gray-400 p-1 pr-3 pl-3 rounded-md'>?</span> - No classification found </li>
+                        <li className={`mb-2 ${novaGroup === 1 ? 'bg-green-600 text-white p-1 rounded-md' : ''}`}> <span className='text-white bg-green-600 p-1 rounded-md'>Group 1</span> - Unprocessed or minimally processed foods</li>
+                        <li className={`mb-2 ${novaGroup === 2 ? 'bg-yellow-400 text-white p-1 rounded-md' : ''}`}><span className='text-white bg-yellow-400 p-1 rounded-md'>Group 2</span> - Processed culinary ingredients</li>
+                        <li className={`mb-2 ${novaGroup === 3 ? 'bg-orange-500 text-white p-1 rounded-md' : ''}`}><span className='text-white bg-orange-500 p-1 rounded-md'>Group 3</span> - Processed foods</li>
+                        <li className={`mb-2 ${novaGroup === 4 ? 'bg-red-600 text-white p-1 rounded-md' : ''}`}><span className='text-white bg-red-600 p-1 rounded-md'>Group 4</span> - Ultra-processed food and drink products</li>
+                        <li className={`mb-2 ${novaGroup === undefined ? 'bg-gray-400 text-white p-1 rounded-md' : ''}`}><span className='text-white bg-gray-400 p-1 pr-3 pl-3 rounded-md'>?</span> - No classification found </li>
                       </ul>
                       <Link href="https://world.openfoodfacts.org/nova" className="text-cyan-600">
                         More info
