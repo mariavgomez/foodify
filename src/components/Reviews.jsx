@@ -288,7 +288,7 @@ export function Reviews() {
       <Container>
         <h2
           id="reviews-title"
-          className="text-3xl m-3 font-medium tracking-tight text-gray-900 sm:text-center"
+          className="text-3xl mb-3 font-medium tracking-tight text-gray-900 sm:text-center"
         >
          Unlock the secrets of your food.
         </h2>
@@ -299,7 +299,7 @@ export function Reviews() {
           Scan for ingredients, Nova groups, and Nutri-Score.
         </h3>
         <p className="mt-2 text-lg text-gray-600 sm:text-center">
-        Don't just eat. Eat mindfully. Scan to thrive.
+        Don&apos;t just eat. Eat mindfully. Scan to thrive.
         </p>
         <ReviewGrid />
       </Container>
