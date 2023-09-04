@@ -156,9 +156,6 @@ export default function Product() {
                   ))}
               </ul>
             </div>
-            {/* <p className="text-sm text-gray-500 mb-1">
-              Labels: {product.labels ?? "no label found"}
-            </p> */}
           </div>
         </div>
       )}

@@ -14,7 +14,8 @@ export default function Scan() {
   const barcodeDetectorRef = useRef();
   const [size, setSize] = useState({ width: 0, height: 0 });
 
-  //const [open, setOpen] = useState(true);
+  const [openSlide, setOpenSlide] = useState(false);
+  const [barcode, setBarcode] = useState();
 
   useEffect(() => {
     const localStreamConstraints = {
@@ -63,7 +64,10 @@ export default function Scan() {
       .then((barcodes) => {
         if (barcodes.length) {
           console.log(barcodes);
-          router.push(`/product/${barcodes[0].rawValue}`);
+          setOpenSlide(true);
+          setBarcode(barcodes[0].rawValue);
+
+          // router.push(`/product/${barcodes[0].rawValue}`);
         }
       });
   };
@@ -77,7 +81,7 @@ export default function Scan() {
         height={size.height}
       ></canvas>
       <video
-        className="w-screen h-screen"
+        className="w-screen h-screen overflow-hidden"
         ref={videoRef}
         autoPlay
         playsInline
@@ -85,7 +89,7 @@ export default function Scan() {
       ></video>
 
       <div className="relative">
-        <div className="absolute flex justify-center left-0 right-0 bottom-8 ">
+        <div className="fixed flex justify-center left-0 right-0 bottom-8 ">
           {/* <Link href="/">
             {" "}
             <button className="rounded-lg bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 backdrop-blur-sm bg-opacity-50 shadow-xl backdrop-brightness-50">
@@ -94,7 +98,7 @@ export default function Scan() {
           </Link> */}
           <Button
             href="/"
-            className="  shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 backdrop-blur-sm bg-opacity-50 shadow-xl backdrop-brightness-50"
+            className=" z-10 shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 backdrop-blur-sm bg-opacity-50 shadow-xl backdrop-brightness-50"
           >
             Stop Scanning
           </Button>
@@ -117,7 +121,11 @@ export default function Scan() {
         }}
       />
 
-      {/* <SlideOver /> */}
+      <SlideOver
+        barcode={barcode}
+        openSlide={openSlide}
+        setOpenSlide={setOpenSlide}
+      />
     </>
   );
 }
