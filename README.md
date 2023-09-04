@@ -115,6 +115,11 @@ Response Format
 ## Screenshots
 
 ![Home page](src/images/Screenshot-readme-1.png)
+![Feature section](src/images/Screenshot-readme-2.png)
+![Examples section](src/images/Screenshot-readme-3.png)
+![Product page](src/images/Screenshot-readme-4.png)
+![Nova group modal](src/images/Screenshot-readme-5.png)
+![Nutri-score modal](src/images/Screenshot-readme-6.png)
 
 ## Next steps
 
