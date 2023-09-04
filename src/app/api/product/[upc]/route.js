@@ -9,7 +9,6 @@ export async function GET(request, { params }) {
     const response = await fetch(apiUrl);
 
     const data = await response.json();
-
     const product = {
       name: data.product.product_name,
       brand: data.product.brands,
@@ -19,7 +18,6 @@ export async function GET(request, { params }) {
       nutriscore_grade: data.product.nutriscore_grade,
     };
 
-    // const product = await response.json();
     console.log("got product", product);
 
     return NextResponse.json(product);

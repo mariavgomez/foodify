@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import NutriScoreModal from "@/components/NutriScoreModal";
 import Nova from "@/components/Nova";
-import SlideOver from "@/components/SlideOver";
 
 export default function Product() {
   const params = useParams();
@@ -27,8 +26,6 @@ export default function Product() {
         setProduct(data);
       } catch (error) {
         console.error("Error fetching product data", error);
-
-        //Placeholders if the api fails, show an example.
         setProduct({
           name: "Classic Mayo",
           brand: "Chosen Foods ",

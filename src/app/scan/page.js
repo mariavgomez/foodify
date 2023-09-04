@@ -1,13 +1,10 @@
 "use client";
 import { Button } from "@/components/Button";
 import SlideOver from "@/components/SlideOver";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 
 export default function Scan() {
-  const router = useRouter();
   const videoRef = useRef();
   const canvasRef = useRef();
   const streamRef = useRef();
@@ -66,8 +63,6 @@ export default function Scan() {
           console.log(barcodes);
           setOpenSlide(true);
           setBarcode(barcodes[0].rawValue);
-
-          // router.push(`/product/${barcodes[0].rawValue}`);
         }
       });
   };
@@ -90,12 +85,6 @@ export default function Scan() {
 
       <div className="relative">
         <div className="fixed flex justify-center left-0 right-0 bottom-8 ">
-          {/* <Link href="/">
-            {" "}
-            <button className="rounded-lg bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 backdrop-blur-sm bg-opacity-50 shadow-xl backdrop-brightness-50">
-              Stop Scanning
-            </button>
-          </Link> */}
           <Button
             href="/"
             className=" z-10 shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 backdrop-blur-sm bg-opacity-50 shadow-xl backdrop-brightness-50"
@@ -120,7 +109,6 @@ export default function Scan() {
           });
         }}
       />
-
       <SlideOver
         barcode={barcode}
         openSlide={openSlide}

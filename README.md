@@ -114,7 +114,8 @@ Response Format
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Home page](images/Screenshot-readme-1.png)
+<img src="images/Screenshot-readme-1.png" width="100" >
 
 ## Next steps
 

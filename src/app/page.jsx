@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { PrimaryFeatures } from "@/components/PrimaryFeatures";
-import { Reviews } from "@/components/Reviews";
+import { Examples} from "@/components/Examples";
 
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
       <PrimaryFeatures />
       <CallToAction />
-      <Reviews />
+      <Examples />
       <Footer />
     </>
   );

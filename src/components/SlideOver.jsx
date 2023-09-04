@@ -1,3 +1,4 @@
+"use client";
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useParams } from "next/navigation";
@@ -9,8 +10,12 @@ export default function SlideOver( { openSlide, setOpenSlide, barcode}) {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  useEffect(() =>{
+    setLoading(true)
+  }, [barcode])
+
   useEffect(() => {
-    async function fetchProductData() {
+    async function productData() {
       try {
         const response = await fetch(`/api/product/${barcode}`);
         if (!response.ok) {
@@ -20,7 +25,6 @@ export default function SlideOver( { openSlide, setOpenSlide, barcode}) {
         setProduct(data);
       } catch (error) {
         console.error("Error fetching product data", error);
-
         setProduct({
           name: "Classic Mayo",
           brand: "Chosen Foods ",
@@ -34,13 +38,13 @@ export default function SlideOver( { openSlide, setOpenSlide, barcode}) {
         setLoading(false);
       }
     }
-    fetchProductData();
-  }, [params.upc]);
+    if (barcode) {
+        productData()
+    }  
+  }, [barcode]);
 
-  return (
-
-    <Transition.Root show={openSlide}  as={Fragment}>
-
+return (
+<Transition.Root show={openSlide}  as={Fragment}>
 {loading ? (
         <div className="text-center mt-8">Loading...</div>
       ) : (
@@ -95,8 +99,7 @@ export default function SlideOver( { openSlide, setOpenSlide, barcode}) {
                     >
                     Open
                   </Button>
-                  </div>
-                 
+                  </div>                
                 </Dialog.Panel>
               </Transition.Child>
             </div>

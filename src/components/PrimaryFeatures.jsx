@@ -157,7 +157,7 @@ function ScanScreen(props) {
       >  
          <div className=" rounded-xl ">        
           <video  autoPlay loop muted className="rounded-xl object-cover w-[600px] h-full md:h-[560px] lg:h-[600px] " >
-          <source src="/videoscan.mov" type="video/mp4"/>
+          <source src="/video.webm" type="video/webm"/>
           </video>
          </div>       
       </MotionAppScreenBody>
