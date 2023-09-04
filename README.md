@@ -114,8 +114,7 @@ Response Format
 
 ## Screenshots
 
-![Home page](images/Screenshot-readme-1.png)
-<img src="images/Screenshot-readme-1.png" width="100" >
+![Home page](src/images/Screenshot-readme-1.png)
 
 ## Next steps
 
