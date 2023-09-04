@@ -3,93 +3,115 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { useInView } from 'framer-motion'
+import Image from "next/image";
 
 import { Container } from '@/components/Container'
 
-const reviews = [
+const examples = [
   {
     title: 'It really works.',
     body: 'I downloaded Pocket today and turned $5000 into $25,000 in half an hour.',
     author: 'CrazyInvestor',
     rating: 5,
+    image: "/Screenshot_0.png",
   },
   {
     title: 'You need this app.',
     body: 'I didn’t understand the stock market at all before Pocket. I still don’t, but at least I’m rich now.',
     author: 'CluelessButRich',
     rating: 5,
+    image: "/Screenshot_1.png",
   },
   {
     title: 'This shouldn’t be legal.',
     body: 'Pocket makes it so easy to win big in the stock market that I can’t believe it’s actually legal.',
     author: 'LivingDaDream',
     rating: 5,
+    image: "/Screenshot_2.png",
   },
   {
     title: 'Screw financial advisors.',
     body: 'I barely made any money investing in mutual funds. With Pocket, I’m doubling my net-worth every single month.',
     author: 'JordanBelfort1962',
     rating: 5,
+    image: "/Screenshot_3.png",
   },
   {
     title: 'I love it!',
     body: 'I started providing insider information myself and now I get new insider tips every 5 minutes. I don’t even have time to act on all of them. New Lamborghini is being delivered next week!',
     author: 'MrBurns',
     rating: 5,
+    image: "/Screenshot_4.png",
   },
   {
     title: 'Too good to be true.',
     body: 'I was making money so fast with Pocket that it felt like a scam. But I sold my shares and withdrew the money and it’s really there, right in my bank account. This app is crazy!',
     author: 'LazyRich99',
     rating: 5,
+    image: "/Screenshot_5.png",
   },
   {
     title: 'Wish I could give 6 stars',
     body: 'This is literally the most important app you will ever download in your life. Get on this before it’s so popular that everyone else is getting these tips too.',
     author: 'SarahLuvzCash',
     rating: 5,
+    image: "/Screenshot_6.png",
   },
   {
     title: 'Bought an island.',
     body: 'Yeah, you read that right. Want your own island too? Get Pocket.',
     author: 'ScroogeMcduck',
     rating: 5,
+    image: "/Screenshot_7.png",
   },
   {
     title: 'No more debt!',
     body: 'After 2 weeks of trading on Pocket I was debt-free. Why did I even go to school at all when Pocket exists?',
     author: 'BruceWayne',
     rating: 5,
+    image: "/Screenshot_8.png",
   },
   {
     title: 'I’m 13 and I’m rich.',
     body: 'I love that with Pocket’s transaction anonymization I could sign up and start trading when I was 12 years old. I had a million dollars before I had armpit hair!',
     author: 'RichieRich',
     rating: 5,
+    image: "/Screenshot_9.png",
   },
   {
     title: 'Started an investment firm.',
     body: 'I charge clients a 3% management fee and just throw all their investments into Pocket. Easy money!',
     author: 'TheCountOfMonteChristo',
     rating: 5,
+    image: "/Screenshot_10.png",
   },
   {
     title: 'It’s like a superpower.',
     body: 'Every tip Pocket has sent me has paid off. It’s like playing Blackjack but knowing exactly what card is coming next!',
     author: 'ClarkKent',
     rating: 5,
+    image: "/Screenshot_11.png",
   },
   {
     title: 'Quit my job.',
     body: 'I downloaded Pocket three days ago and quit my job today. I can’t believe no one else thought to build a stock trading app that works this way!',
     author: 'GeorgeCostanza',
     rating: 5,
+    image: "/Screenshot_12.png",
   },
   {
     title: 'Don’t download this app',
     body: 'Unless you want to have the best life ever! I am literally writing this from a yacht.',
     author: 'JeffBezos',
     rating: 5,
+    image: "/Screenshot_13.png",
+  },
+  {
+    title: 'Don’t download this app',
+    body: 'Unless you want to have the best life ever! I am literally writing this from a yacht.',
+    author: 'JeffBezos',
+    rating: 5,
+    image: "/Screenshot_14.png",
   },
 ]
 
@@ -117,7 +139,7 @@ function StarRating({ rating }) {
   )
 }
 
-function Review({ title, body, author, rating, className, ...props }) {
+function Example({ title, image, body, author, rating, className, ...props }) {
   let animationDelay = useMemo(() => {
     let possibleAnimationDelays = ['0s', '0.1s', '0.2s', '0.3s', '0.4s', '0.5s']
     return possibleAnimationDelays[
@@ -135,15 +157,25 @@ function Review({ title, body, author, rating, className, ...props }) {
       {...props}
     >
       <blockquote className="text-gray-900">
-        <StarRating rating={rating} />
+        {/* <StarRating rating={rating} />
         <p className="mt-4 text-lg font-semibold leading-6 before:content-['“'] after:content-['”']">
           {title}
-        </p>
-        <p className="mt-3 text-base leading-7">{body}</p>
+        </p> */}
+        <div className="mt-4 rounded-3xl ">
+                  <Image
+                    src={image}
+                    alt={`product`}
+                    width={500}
+                    height={500}
+                    className="mx-auto"
+                   
+                  />
+                </div>
+        {/* <p className="mt-3 text-base leading-7">{body}</p> */}
       </blockquote>
-      <figcaption className="mt-3 text-sm text-gray-600 before:content-['–_']">
+      {/* <figcaption className="mt-3 text-sm text-gray-600 before:content-['–_']">
         {author}
-      </figcaption>
+      </figcaption> */}
     </figure>
   )
 }
@@ -160,7 +192,7 @@ function splitArray(array, numParts) {
   return result
 }
 
-function ReviewColumn({ reviews, className, reviewClassName, msPerPixel = 0 }) {
+function ExampleColumn({ examples, className, examplesClassName, msPerPixel = 0 }) {
   let columnRef = useRef(null)
   let [columnHeight, setColumnHeight] = useState(0)
   let duration = `${columnHeight * msPerPixel}ms`
@@ -187,22 +219,22 @@ function ReviewColumn({ reviews, className, reviewClassName, msPerPixel = 0 }) {
       className={clsx('animate-marquee space-y-8 py-4', className)}
       style={{ '--marquee-duration': duration }}
     >
-      {reviews.concat(reviews).map((review, reviewIndex) => (
-        <Review
-          key={reviewIndex}
-          aria-hidden={reviewIndex >= reviews.length}
-          className={reviewClassName?.(reviewIndex % reviews.length)}
-          {...review}
+      {examples.concat(examples).map((example, exampleIndex) => (
+        <Example
+          key={exampleIndex}
+          aria-hidden={exampleIndex >= examples.length}
+          className={examplesClassName?.(exampleIndex % examples.length)}
+          {...example}
         />
       ))}
     </div>
   )
 }
 
-function ReviewGrid() {
+function ExampleGrid() {
   let containerRef = useRef(null)
   let isInView = useInView(containerRef, { once: true, amount: 0.4 })
-  let columns = splitArray(reviews, 3)
+  let columns = splitArray(examples, 3)
   let column1 = columns[0]
   let column2 = columns[1]
   let column3 = splitArray(columns[2], 2)
@@ -214,27 +246,27 @@ function ReviewGrid() {
     >
       {isInView && (
         <>
-          <ReviewColumn
-            reviews={[...column1, ...column3.flat(), ...column2]}
-            reviewClassName={(reviewIndex) =>
+          <ExampleColumn
+            examples={[...column1, ...column3.flat(), ...column2]}
+            exampleClassName={(exampleIndex) =>
               clsx(
-                reviewIndex >= column1.length + column3[0].length &&
+                exampleIndex >= column1.length + column3[0].length &&
                   'md:hidden',
-                reviewIndex >= column1.length && 'lg:hidden',
+                  exampleIndex >= column1.length && 'lg:hidden',
               )
             }
             msPerPixel={10}
           />
-          <ReviewColumn
-            reviews={[...column2, ...column3[1]]}
+          <ExampleColumn
+            examples={[...column2, ...column3[1]]}
             className="hidden md:block"
-            reviewClassName={(reviewIndex) =>
-              reviewIndex >= column2.length ? 'lg:hidden' : ''
+            exampleClassName={(exampleIndex) =>
+              exampleIndex >= column2.length ? 'lg:hidden' : ''
             }
             msPerPixel={15}
           />
-          <ReviewColumn
-            reviews={column3.flat()}
+          <ExampleColumn
+            examples={column3.flat()}
             className="hidden lg:block"
             msPerPixel={10}
           />
@@ -246,24 +278,30 @@ function ReviewGrid() {
   )
 }
 
-export function Reviews() {
+export function Examples() {
   return (
     <section
-      id="reviews"
-      aria-labelledby="reviews-title"
+      id="examples"
+      aria-labelledby="examples-title"
       className="pb-16 pt-20 sm:pb-24 sm:pt-32"
     >
       <Container>
         <h2
-          id="reviews-title"
-          className="text-3xl font-medium tracking-tight text-gray-900 sm:text-center"
+          id="examples-title"
+          className="text-3xl mb-3 font-medium tracking-tight text-gray-900 sm:text-center"
         >
-          Everyone is changing their life with Pocket.
+         Unlock the secrets of your food.
         </h2>
+        <h3
+          id="examples-title"
+          className="text-2xl font-medium tracking-tight text-gray-900 sm:text-center"
+        >
+          Scan for ingredients, Nova groups, and Nutri-Score.
+        </h3>
         <p className="mt-2 text-lg text-gray-600 sm:text-center">
-          Thousands of people have doubled their net-worth in the last 30 days.
+        Don&apos;t just eat. Eat mindfully. Scan to thrive.
         </p>
-        <ReviewGrid />
+        <ExampleGrid />
       </Container>
     </section>
   )
