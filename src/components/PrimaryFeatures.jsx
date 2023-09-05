@@ -150,7 +150,7 @@ function ScanScreen(props) {
         className=" "
       >  
          <div className=" rounded-xl ">        
-          <video playsinline  autoPlay loop muted className="rounded-xl object-cover w-[600px] h-full md:h-[560px] lg:h-[600px] " >
+          <video playsinline  autoPlay loop muted className="rounded-xl object-cover w-full h-auto md:h-[560px] lg:h-[600px] " >
           <source src="/video.mp4" type="video/mp4"/>
           </video>
          </div>       
