@@ -150,14 +150,14 @@ function ScanScreen(props) {
         className=" "
       >  
          <div className=" rounded-xl ">        
-          <video  autoPlay loop muted className="rounded-xl object-cover w-[600px] h-full md:h-[560px] lg:h-[600px] " >
-          <source src="/video.webm" type="video/webm"/>
+          <video playsinline controls={false} autoPlay muted loop className="rounded-xl object-cover w-full h-auto md:h-[560px] lg:h-[600px] " >
+          <source src="/video.mp4" type="video/mp4"/>
           </video>
          </div>       
       </MotionAppScreenBody>
     </AppScreen>
   )
-}
+} 
 
 function ProductScreen(props) {
   return (
