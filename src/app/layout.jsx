@@ -1,11 +1,12 @@
 
-// export { Layout as default } from '@/components/Layout'
 
 import './globals.css'
 import { Inter } from 'next/font/google'
 import clsx from 'clsx'
 
 import '@/styles/tailwind.css'
+import Head from 'next/head'
+
 
 const inter = Inter({ subsets: ['latin'], display: 'swap',
 variable: '--font-inter', })
@@ -19,6 +20,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" 
     className={clsx('h-full bg-gray-50 antialiased', inter.variable)}>
+      <head>
+      <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className={inter.className}> <div className="flex min-h-full flex-col">{children}</div></body>
     </html>
   )

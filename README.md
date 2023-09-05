@@ -74,6 +74,7 @@ autoprefixer: A PostCSS plugin to parse CSS and add vendor prefixes.
 postcss: A tool for transforming CSS with JavaScript.
 use-debounce: A utility for debouncing functions.
 zbar.wasm: A WebAssembly implementation of the ZBar barcode reader library.
+next-pwa.
 
 ## Features
 
