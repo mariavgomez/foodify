@@ -9,13 +9,14 @@ export const metadata = {
 }
 
 export default function Login() {
+  
   return (
     <AuthLayout
       title="Sign in to account"
       subtitle={
         <>
           Don’t have an account?{' '}
-          <Link href="/register" className="text-cyan-600">
+          <Link href="/register" className="text-cyan-600 dark:bg-gray-50">
             Sign up
           </Link>{' '}
           for a free trial.

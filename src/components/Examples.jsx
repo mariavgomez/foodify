@@ -283,18 +283,18 @@ export function Examples() {
     <section
       id="examples"
       aria-labelledby="examples-title"
-      className="pb-16 pt-20 sm:pb-24 sm:pt-32"
+      className="pb-16 pt-20 sm:pb-24 sm:pt-32 dark:bg-gray-50"
     >
       <Container>
         <h2
           id="examples-title"
-          className="text-3xl mb-3 font-medium tracking-tight text-gray-900 sm:text-center"
+          className="text-3xl mb-3 font-medium tracking-tight text-gray-900 sm:text-center "
         >
          Unlock the secrets of your food.
         </h2>
         <h3
           id="examples-title"
-          className="text-2xl font-medium tracking-tight text-gray-900 sm:text-center"
+          className="text-2xl font-medium tracking-tight text-gray-900 sm:text-center "
         >
           Scan for ingredients, Nova groups, and Nutri-Score.
         </h3>
