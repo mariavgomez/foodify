@@ -47,7 +47,7 @@ function MobileNavLink(props) {
 
 export function Header() {
   return (
-    <header className='bg-cyan-50'>
+    <header className='bg-cyan-50 '>
       <nav>
         <Container className="bg-cyan-50  z-40 flex justify-between py-8 relative">
           <div className="relative z-10 flex items-center gap-16">
@@ -60,7 +60,7 @@ export function Header() {
               <NavLinks />
             </div>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 ">
             <Popover className="lg:hidden">
               {({ open }) => (
                 <>
@@ -97,9 +97,9 @@ export function Header() {
                             y: -32,
                             transition: { duration: 0.2 },
                           }}
-                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20"
+                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50  px-6 pb-6 pt-32 shadow-2xl shadow-gray-900/20 "
                         >
-                          <div className="space-y-4">
+                          <div className="space-y-4 ">
                             <MobileNavLink href="/scan">
                               Scanner
                             </MobileNavLink>
