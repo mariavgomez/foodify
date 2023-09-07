@@ -1,14 +1,18 @@
+"use client";
 import Link from 'next/link'
 
 import { AuthLayout } from '@/components/AuthLayout'
 import { Button } from '@/components/Button'
 import { SelectField, TextField } from '@/components/Fields'
 
-export const metadata = {
-  title: 'Sign Up',
-}
+// export const metadata = {
+//   title: 'Sign Up',
+// }
 
 export default function Register() {
+  const handleSignup = () => {
+    alert('Sign up is not available at the moment. Please try again later.')
+  }
   return (
     <AuthLayout
       title="Sign up for an account"
@@ -65,7 +69,7 @@ export default function Register() {
             <option>The “Never Use This” podcast</option>
           </SelectField>
         </div>
-        <Button type="submit" color="cyan" className="mt-8 w-full">
+        <Button type="submit" color="cyan" className="mt-8 w-full" onClick={handleSignup}>
           Get started today
         </Button>
       </form>

@@ -4,7 +4,7 @@ import clsx from 'clsx'
 export function AppStoreLink({ color = 'black' }) {
   return (
     <Link
-      href="#"
+      href="https://www.foodify.dev/"
       aria-label="Download on the App Store"
       className={clsx(
         'rounded-lg transition-colors',
