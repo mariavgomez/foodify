@@ -1,15 +1,17 @@
+"use client";
 import Link from 'next/link'
-
 import { AuthLayout } from '@/components/AuthLayout'
 import { Button } from '@/components/Button'
 import { TextField } from '@/components/Fields'
 
-export const metadata = {
-  title: 'Sign In',
-}
+// export const metadata = {
+//   title: 'Sign In',
+// }
 
 export default function Login() {
-  
+  const handleLoginClick = () => {
+    alert('Login is not available at the moment. Please try again later.')
+  }
   return (
     <AuthLayout
       title="Sign in to account"
@@ -40,7 +42,7 @@ export default function Login() {
             required
           />
         </div>
-        <Button type="submit" color="cyan" className="mt-8 w-full">
+        <Button type="submit" color="cyan" className="mt-8 w-full" onClick={handleLoginClick}>
           Sign in to account
         </Button>
       </form>

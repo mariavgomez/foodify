@@ -114,7 +114,7 @@ export function Header() {
                             <Button href="/login" variant="outline">
                               Log in
                             </Button>
-                            <Button href="#">Download the app</Button>
+                            <Button href="https://www.foodify.dev/">Download the app</Button>
                           </div>
                         </Popover.Panel>
                       </>
@@ -126,7 +126,7 @@ export function Header() {
             <Button href="/login" variant="outline" className="hidden lg:block">
               Log in
             </Button>
-            <Button href="#" className="hidden lg:block">
+            <Button href="https://www.foodify.dev/" className="hidden lg:block">
               Download
             </Button>
           </div>

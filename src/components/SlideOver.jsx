@@ -70,7 +70,7 @@ return (
                         <div className=" flex justify-center items-center mb-4 md:max-w-xs">
                           <img
                             className="w-48 max-h-72 object-contain flex-none rounded-xl bg-white object-contain ring-1 ring-gray-900/10 shadow-md shadow-stone-500/50"
-                            src={product.image}
+                            src={product.image ?? "/avocado_mayo_img.jpeg"}
                             alt={product.name}
                           />
                         </div>
