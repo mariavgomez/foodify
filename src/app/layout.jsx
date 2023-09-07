@@ -3,6 +3,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import clsx from 'clsx'
+import { Analytics } from '@vercel/analytics/react';
 
 import '@/styles/tailwind.css'
 import Head from 'next/head'
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
       <head>
       <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={inter.className}> <div className="flex min-h-full flex-col">{children}</div></body>
+      <body className={inter.className}> <div className="flex min-h-full flex-col">{children}</div> <Analytics /></body>
     </html>
   )
 }
