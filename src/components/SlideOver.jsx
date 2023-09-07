@@ -74,7 +74,7 @@ return (
                             alt={product.name}
                           />
                         </div>
-                        <h2 className="text-2xl font-bold ml-5 mb-1">
+                        <h2 className="text-2xl font-bold ml-5 mb-1 text-gray-600 dark:text-gray-600 ">
                           {product.name ?? "No name found"}
                         </h2>
                        
