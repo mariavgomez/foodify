@@ -100,7 +100,7 @@ export function Hero() {
               It&apos;s time to make healthy choices.
             </h1>
             <p className="mt-6 text-lg text-gray-600 ">
-            With Foodify you can scan your barcode product and discover if it is a good or bad healthy option.
+            With Foodify you can scan your barcode product and discover whether it&apos;s a healthy option.
             </p>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
               <AppStoreLink />
